@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Test.Models.customer>
+
+@{
+	ViewBag.Title = "Customers";
+}
+
+	<div class="row">
+		<div class="col-md-10">
+			<h2>Manage Customers</h2>
+		</div>
+		<div class="col-md-2">
+			<br />
+			<input type="button" class="btn btn-info" value="Create New Customer" onclick="location.href='@Url.Action("Create", "customers")'" />
+		</div>
+	</div>
+<table class="table table-bordered">
+	
+		<tr  style="color:white; background-color:royalblue">
+			<th >
+				@Html.DisplayNameFor(model => model.Title)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.ForeName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.MiddleInitial)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.SurName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.DateofBirth)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Status)
+			</th>
+			<th>
+				Manage
+			</th>
+		</tr>
+	
+
+		@foreach (var item in Model)
+		{
+			<tr  >
+				<td>
+					@Html.DisplayFor(modelItem => item.Title)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.ForeName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.MiddleInitial)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.SurName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.DateofBirth)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Status)
+				</td>
+				<td>
+					@Html.ActionLink(" ", "Edit", new { id = item.CustomerID }, new { @class = "glyphicon glyphicon-pencil" }) 
+					@Html.ActionLink(" ", "Details", new { id = item.CustomerID }, new { @class = "glyphicon glyphicon-tasks" }) 
+					@Html.ActionLink(" ", "Delete", new { id = item.CustomerID }, new { @class = "glyphicon glyphicon-trash" })
+					
+
+				</td>
+			</tr>
+		}
+
+</table>

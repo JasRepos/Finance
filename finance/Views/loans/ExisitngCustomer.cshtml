@@ -1,0 +1,15 @@
+﻿
+@{
+	ViewBag.Title = "ExisitngCustomer";
+}
+
+<h2>ExisitngCustomer</h2>
+
+@using (Html.BeginForm("CreateLoan","loansController"))
+{
+	<input type="text" name="ForeName" />
+	<input type="text" name="LastName" />
+
+	<input type="submit" />
+}
+

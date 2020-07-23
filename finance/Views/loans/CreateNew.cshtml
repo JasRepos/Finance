@@ -1,0 +1,17 @@
+﻿
+@{
+	ViewBag.Title = "CreateNew";
+}
+
+<h2>CreateLoan</h2>
+
+@using (Html.BeginForm("CreateLoan", "loans"))
+{
+	<input type="text" name="ForeName" />
+	<input type="text" name="LastName" />
+
+	<input type="submit" />
+}
+
+<a href="@Url.Action("Create", "customers")">New Customer</a>
+

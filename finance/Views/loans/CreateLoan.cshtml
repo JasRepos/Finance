@@ -1,0 +1,139 @@
+﻿@model Test.Models.loans
+
+@{
+	ViewBag.Title = "Create";
+}
+<h2>Create New Loan</h2>
+
+@if (@TempData["CustomerInfo"] != null)
+{
+	<div class="alert alert-error alert-warning alert-dismissable message-error"
+		 style="font-size: 13px; color: #d01616; margin-bottom: 0px; padding: 10px;
+       text-align:left;padding-left:30px;">
+		@TempData["CustomerInfo"];
+	</div>
+	<input type="button" class="btn btn-info" value="Back" onclick="location.href='@Url.Action("Index", "Loans")'" />
+	<input type="button" class="btn btn-info" value="Create New Customer" onclick="location.href='@Url.Action("Create", "customers")'" />
+	<input type="button" class="btn btn-info" value="View Exisitng Customers" onclick="location.href='@Url.Action("Index", "customers")'" />
+
+
+}
+
+
+<br />
+@using (Html.BeginForm("Create", "loans"))
+{
+	@Html.AntiForgeryToken()
+
+	<div class="form-horizontal">
+		<hr />
+		@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+		<div class="form-group">
+			@Html.LabelFor(model => model.LoanNumber, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.LoanNumber, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+				@Html.ValidationMessageFor(model => model.LoanNumber, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.LoanType, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.LoanType, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.LoanType, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+				@Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.IntrestRate, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.IntrestRate, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.IntrestRate, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.Value, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Value, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.Value, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.Duration, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.Duration, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.Duration, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		@*<div class="form-group">
+				@Html.LabelFor(model => model.IsInactive, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					<div class="checkbox">
+						@Html.EditorFor(model => model.IsInactive)
+						@Html.ValidationMessageFor(model => model.IsInactive, "", new { @class = "text-danger" })
+					</div>
+				</div>
+			</div>*@
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.CustomerForeName, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.CustomerForeName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+				@Html.ValidationMessageFor(model => model.CustomerForeName, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.CustomerSurName, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.CustomerSurName, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+				@Html.ValidationMessageFor(model => model.CustomerSurName, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.DateOfBirth, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.DateOfBirth, new { htmlAttributes = new { @class = "form-control", disabled = "disabled", @readonly = "readonly" } })
+				@Html.ValidationMessageFor(model => model.DateOfBirth, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+
+		<div class="form-group">
+			@Html.LabelFor(model => model.LoanOriginatedBy, htmlAttributes: new { @class = "control-label col-md-2" })
+			<div class="col-md-10">
+				@Html.EditorFor(model => model.LoanOriginatedBy, new { htmlAttributes = new { @class = "form-control" } })
+				@Html.ValidationMessageFor(model => model.LoanOriginatedBy, "", new { @class = "text-danger" })
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-md-offset-2 col-md-10">
+				<input type="submit" value="Create" class="btn btn-default" />
+			</div>
+		</div>
+	</div>
+
+}
+
+
+<div>
+	<input type="button" class="btn btn-info" value="Back" onclick="location.href='@Url.Action("Index", "Loans")'" />
+</div>
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}

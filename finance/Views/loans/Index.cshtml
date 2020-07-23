@@ -1,0 +1,115 @@
+﻿@model IEnumerable<Test.Models.loans>
+
+@{
+	ViewBag.Title = "Loans";
+}
+
+<div class=" col-md-4">
+	<h2>Manage Loans</h2>
+
+</div>
+<br/>
+	<div class="col-md-offset-6 col-md-2">
+		<input type="button" class="btn btn-info" value="Create New Loan" onclick="location.href='@Url.Action("CreateNew", "loans")'" />
+	</div>
+	<br />
+
+	@if (@TempData["Error Deletion"] != null)
+	{
+		<div class="alert alert-error alert-warning alert-dismissable message-error"
+			 style="font-size: 13px; color: #d01616; margin-bottom: 0px; padding: 10px;
+       text-align:left;padding-left:30px;">
+			@TempData["Error Deletion"];
+		</div>
+	}
+
+	@if (@TempData["LoansCreation"] != null)
+	{
+		<div class="alert alert-error alert-warning alert-dismissable message-error"
+			 style="font-size: 13px; color: #d01616; margin-bottom: 0px; padding: 10px;
+       text-align:left;padding-left:30px;">
+			@TempData["LoansCreation"];
+		</div>
+	}
+
+	<table class="table table table-bordered"> 
+		<tr style="color:white; background-color:royalblue">
+			<th>
+				@Html.DisplayNameFor(model => model.LoanNumber)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CustomerForeName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.CustomerSurName)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.LoanType)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.StartDate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.IntrestRate)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Value)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.Duration)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.IsInactive)
+			</th>
+			<th>
+				@Html.DisplayNameFor(model => model.LoanOriginatedBy)
+			</th>
+			<th>
+				Manage
+			</th>
+		</tr>
+
+		@foreach (var item in Model)
+		{
+			<tr>
+				<td>
+					@Html.DisplayFor(modelItem => item.LoanNumber)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CustomerForeName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.CustomerSurName)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LoanType)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.StartDate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IntrestRate)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Value)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.Duration)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.IsInactive)
+				</td>
+				<td>
+					@Html.DisplayFor(modelItem => item.LoanOriginatedBy)
+				</td>
+				<td>
+					@Html.ActionLink(" ", "Edit", new { id = item.LoanID }, new { @class = "glyphicon glyphicon-pencil" }) 
+					@Html.ActionLink(" ", "Details", new { id = item.LoanID }, new { @class = "glyphicon glyphicon-tasks" }) 
+					@Html.ActionLink(" ", "Delete", new { id = item.LoanID }, new { @class = "glyphicon glyphicon-trash" })
+				</td>
+			</tr>
+		}
+
+	</table>
+
+

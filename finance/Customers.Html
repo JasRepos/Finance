@@ -1,0 +1,37 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>API Call</title>
+	<script src="Scripts/jquery-3.4.1.js"></script>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			var ulCustomers = $('#ulCustomers');
+			$('#btn').click(function () {
+				$.ajax({
+					type: 'GET',
+					url: "http://localhost:15133/api/CustomersTableView/",
+					dataType: 'json',
+					success: function (data) {
+						ulCustomers.empty();
+						$.each(data, function (index, val) {
+							var fullName = val.ForeName + ' ' + val.MiddleInitial + ' ' + val.SurName;
+							ulCustomers.append('<li>' + fullName + '</li>');
+						});
+					}
+				});
+			});
+			$('#btnClear').click(function () {
+				ulCustomers.empty();
+			});
+		});
+	</script>
+</head>
+<body>
+	<div>
+		<input id="btn" type="button" value="Get All Customers" />
+		<input id="btnClear" type="button" value="Clear" />
+		<ul id="ulCustomers" />
+	</div>
+</body>
+</html>
